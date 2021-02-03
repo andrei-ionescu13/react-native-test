@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component, useCallback } from 'react';
 import { View, StyleSheet, TextInput } from 'react-native';
-
+import _ from 'lodash';
 class TextField extends Component {
   constructor(props) {
     super(props);
@@ -8,29 +8,31 @@ class TextField extends Component {
     this.state = {
       borderBottomColor: 'gray'
     }
-
-    this.onFocus = this.onFocus.bind(this);
-    this.onBlur = this.onBlur.bind(this);
   }
 
-  onFocus() {
-    this.setState({
-      borderBottomColor: '#1976d2'
+  get onFocus() {
+    return _.memoize(() => {
+      this.setState({
+        borderBottomColor: '#1976d2'
+      })
     })
   }
 
-  onBlur() {
-    this.setState({
-      borderBottomColor: 'gray'
+  get onBlur() {
+    return _.memoize(() => {
+      this.setState({
+        borderBottomColor: 'gray'
+      })
     })
   }
 
   render() {
     return (
       <TextInput
-        {...this.props}
-        onBlur={() => this.onBlur()}
-        onFocus={() => this.onFocus()}
+        {...this.props
+        }
+        onBlur={this.onBlur}
+        onFocus={this.onFocus}
         style={{
           ...styles.textInput,
           borderBottomColor: this.state.borderBottomColor
