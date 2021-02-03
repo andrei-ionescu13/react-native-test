@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, TextInput } from 'react-native';
 import Button from './Button';
+import TextField from './TextField';
 
 class AddTodoItem extends Component {
   constructor(props) {
@@ -35,10 +36,9 @@ class AddTodoItem extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.textInputContainer}>
-          <TextInput
+          <TextField
             onChangeText={(value) => this.handleInputValueChange(value)}
             value={this.state.inputValue}
-            style={styles.textInput}
           />
         </View>
         <Button onPress={() => this.handleSubmit()}>Add todo</Button>
@@ -50,13 +50,6 @@ class AddTodoItem extends Component {
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center'
-  },
-  textInput: {
-    minWidth: 100,
-    borderBottomColor: 'black',
-    borderBottomWidth: 1,
-    paddingBottom: 0,
-    marginBottom: 8
   }
 })
 
