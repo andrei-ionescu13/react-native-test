@@ -1,6 +1,7 @@
-import React, { Component, useCallback } from 'react';
-import { View, StyleSheet, TextInput } from 'react-native';
-import _ from 'lodash';
+import React, { Component } from 'react';
+import { StyleSheet, TextInput } from 'react-native';
+import memoize from '../utils/memoize';
+
 class TextField extends Component {
   constructor(props) {
     super(props);
@@ -11,7 +12,7 @@ class TextField extends Component {
   }
 
   get onFocus() {
-    return _.memoize(() => {
+    return memoize(() => {
       this.setState({
         borderBottomColor: '#1976d2'
       })
@@ -19,7 +20,7 @@ class TextField extends Component {
   }
 
   get onBlur() {
-    return _.memoize(() => {
+    return memoize(() => {
       this.setState({
         borderBottomColor: 'gray'
       })
@@ -29,8 +30,7 @@ class TextField extends Component {
   render() {
     return (
       <TextInput
-        {...this.props
-        }
+        {...this.props}
         onBlur={this.onBlur}
         onFocus={this.onFocus}
         style={{
