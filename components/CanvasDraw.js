@@ -6,8 +6,6 @@ class CanvasDraw extends Component {
   webview = null;
 
   render() {
-    // const source = require('./canvas.js');
-    // const webviewSource = Image.resolveAssetSource(source);
     let source = Platform.OS === 'ios'
       ? require('../assets/canvas.html')
       : { uri: 'file:///android_asset/canvas.html' };
