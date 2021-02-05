@@ -1,23 +1,50 @@
 import React, { Component } from 'react';
-import Canvas, { Image as CanvasImage } from 'react-native-canvas';
-import { Dimensions, View, Platform } from "react-native";
+import { Button, View, StyleSheet } from "react-native";
 import { WebView } from 'react-native-webview';
-
+import { Image } from 'react-native';
+import canvas from './canvas';
 class CanvasDraw extends Component {
+  webview = null;
+
   render() {
+    // const source = require('./canvas.js');
+    // const webviewSource = Image.resolveAssetSource(source);
     let source = { uri: 'file:///android_asset/canvas.html' };
+
+    const handleClick = (message) => {
+      this.webview.postMessage(message);
+    }
+
     return (
       <View style={{ flex: 1 }}>
         <WebView
+          ref={(ref) => (this.webview = ref)}
           source={source}
-          style={{ flex: 1 }}
           onError={(event) =>
             alert(`Webview error: ${event.nativeEvent.description}`)
           }
+          onMessage={(event) => {
+            alert('history received');
+            console.log(event.nativeEvent.data)
+          }}
         />
+        <View style={styles.buttonsContaier}>
+          <Button title='LEFT' onPress={() => handleClick('left')} />
+          <Button title='RIGHT' onPress={() => handleClick('right')} />
+          <View style={{ flex: 1 }} />
+          <Button title='UP' onPress={() => handleClick('up')} />
+          <Button title='DOWN' onPress={() => handleClick('down')} />
+        </View>
       </View>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  buttonsContaier: {
+    flexDirection: 'row',
+    paddingHorizontal: 24
+  }
+});
 
 export default CanvasDraw;
