@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import { Button, View, StyleSheet } from "react-native";
 import { WebView } from 'react-native-webview';
-import { Image } from 'react-native';
-import canvas from './canvas';
+import canvas from '../assets/canvas';
 class CanvasDraw extends Component {
   webview = null;
 
   render() {
     // const source = require('./canvas.js');
     // const webviewSource = Image.resolveAssetSource(source);
-    let source = { uri: 'file:///android_asset/canvas.html' };
+    let source = Platform.OS === 'ios'
+      ? require('../assets/canvas.html')
+      : { uri: 'file:///android_asset/canvas.html' };
 
     const handleClick = (message) => {
       this.webview.postMessage(message);
@@ -24,9 +25,10 @@ class CanvasDraw extends Component {
             alert(`Webview error: ${event.nativeEvent.description}`)
           }
           onMessage={(event) => {
-            alert('history received');
+            // alert('history received');
             console.log(event.nativeEvent.data)
           }}
+          injectedJavaScript={canvas()}
         />
         <View style={styles.buttonsContaier}>
           <Button title='LEFT' onPress={() => handleClick('left')} />
