@@ -11,14 +11,14 @@ class AddTodoItem extends Component {
     inputValue: ''
   };
 
-  handleInputValueChange = this.memoize((value) => {
+  handleInputValueChange = this.memoize('handleInputValueChange', (value) => {
     this.setState({
       ...this.state,
       inputValue: value
     })
   })
 
-  handleSubmit = this.memoize(() => {
+  handleSubmit = this.memoize('handleSubmit', () => {
     if (this.state.inputValue)
       this.props.addTodoItem(this.state.inputValue)
     this.setState({

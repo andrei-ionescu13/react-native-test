@@ -2,26 +2,26 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
 import AddTodoItem from './AddTodoItem';
 import TodoItem from './TodoItem';
-import memoize from '../utils/memoizer';
+import memoizer from '../utils/memoizer';
 
 class Todo extends Component {
+  memoize = memoizer();
+
   constructor(props) {
     super(props);
     this.state = {
       data: ['Buy this', 'Buy that']
     }
-
-    this.addTodoItem = this.addTodoItem.bind(this);
   }
 
-  removeItem = memoize((value) => {
+  removeItem = this.memoize('removeItem', (value) => {
     this.setState({
       ...this.state,
       data: this.state.data.filter(x => x !== value)
     })
   })
 
-  addTodoItem = memoize((value) => {
+  addTodoItem = this.memoize('addTodoItem', (value) => {
     this.setState({
       ...this.state,
       data: [...this.state.data, value]
