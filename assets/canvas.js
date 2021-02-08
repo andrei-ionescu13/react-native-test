@@ -22,16 +22,16 @@ const drawLine = () => {
 document.addEventListener("message", function (event) {
   switch (event.data) {
     case 'left':
-      history.push({ x: -10, y: 0 });
+      history.push({ x: -1, y: 0 });
       break;
     case 'right':
-      history.push({ x: 10, y: 0 });
+      history.push({ x: 1, y: 0 });
       break;
     case 'up':
-      history.push({ x: 0, y: -10 });
+      history.push({ x: 0, y: -1 });
       break;
     case 'down':
-      history.push({ x: 0, y: 10 });
+      history.push({ x: 0, y: 1 });
       break;
     default:
       break;

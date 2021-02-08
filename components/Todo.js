@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
 import AddTodoItem from './AddTodoItem';
 import TodoItem from './TodoItem';
-import memoize from '../utils/memoize';
+import memoize from '../utils/memoizer';
 
 class Todo extends Component {
   constructor(props) {

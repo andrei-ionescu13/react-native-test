@@ -1,26 +1,24 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, TextInput } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import Button from './Button';
 import TextField from './TextField';
-import memoize from '../utils/memoize';
+import memoizer from '../utils/memoizer';
 
 class AddTodoItem extends Component {
-  constructor(props) {
-    super(props);
+  memoize = memoizer();
 
-    this.state = {
-      inputValue: ''
-    }
-  }
+  state = {
+    inputValue: ''
+  };
 
-  handleInputValueChange = memoize((value) => {
+  handleInputValueChange = this.memoize((value) => {
     this.setState({
       ...this.state,
       inputValue: value
     })
   })
 
-  handleSubmit = memoize(() => {
+  handleSubmit = this.memoize(() => {
     if (this.state.inputValue)
       this.props.addTodoItem(this.state.inputValue)
     this.setState({

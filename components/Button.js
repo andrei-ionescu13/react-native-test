@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import { Text, TouchableOpacity, StyleSheet } from 'react-native';
 
 class Button extends Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     const { children, ...rest } = this.props;
 

@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import Button from './Button';
-import memoize from '../utils/memoize';
+import memoize from '../utils/memoizer';
+
 class TodoItem extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { checked: false }
-  }
+  memoize = memoize();
+
+  state = { checked: false }
 
   render() {
     return (

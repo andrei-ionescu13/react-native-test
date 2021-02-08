@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
 import { StyleSheet, TextInput } from 'react-native';
-import memoize from '../utils/memoize';
+import memoize from '../utils/memoizer';
 
 class TextField extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      borderBottomColor: 'gray'
-    }
+  state = {
+    borderBottomColor: 'gray'
   }
 
   get onFocus() {
