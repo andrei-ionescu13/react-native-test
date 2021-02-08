@@ -1,19 +1,11 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import Button from './Button';
-
+import memoize from '../utils/memoize';
 class TodoItem extends Component {
   constructor(props) {
     super(props);
     this.state = { checked: false }
-    this.handleCheckedChange = this.handleCheckedChange.bind(this);
-  }
-
-  handleCheckedChange(value) {
-    this.setState({
-      ...this.state,
-      checked: value,
-    })
   }
 
   render() {

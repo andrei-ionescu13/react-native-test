@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, StyleSheet, TextInput } from 'react-native';
 import Button from './Button';
 import TextField from './TextField';
+import memoize from '../utils/memoize';
 
 class AddTodoItem extends Component {
   constructor(props) {
@@ -10,27 +11,23 @@ class AddTodoItem extends Component {
     this.state = {
       inputValue: ''
     }
-
-    this.handleInputValueChange = this.handleInputValueChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-
   }
 
-  handleInputValueChange(value) {
+  handleInputValueChange = memoize((value) => {
     this.setState({
       ...this.state,
       inputValue: value
     })
-  }
+  })
 
-  handleSubmit() {
+  handleSubmit = memoize(() => {
     if (this.state.inputValue)
       this.props.addTodoItem(this.state.inputValue)
     this.setState({
       ...this.state,
       inputValue: ''
     })
-  }
+  })
 
   render() {
     return (

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
 import AddTodoItem from './AddTodoItem';
 import TodoItem from './TodoItem';
-
+import memoize from '../utils/memoize';
 
 class Todo extends Component {
   constructor(props) {
@@ -11,23 +11,22 @@ class Todo extends Component {
       data: ['Buy this', 'Buy that']
     }
 
-    this.removeItem = this.removeItem.bind(this);
     this.addTodoItem = this.addTodoItem.bind(this);
   }
 
-  removeItem(value) {
+  removeItem = memoize((value) => {
     this.setState({
       ...this.state,
       data: this.state.data.filter(x => x !== value)
     })
-  }
+  })
 
-  addTodoItem(value) {
+  addTodoItem = memoize((value) => {
     this.setState({
       ...this.state,
       data: [...this.state.data, value]
     })
-  }
+  })
 
   render() {
     return (
