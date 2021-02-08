@@ -52,15 +52,32 @@ class Knob extends Component {
       <View
         onLayout={(event) => { this.handleLayoutChange(event) }}
         ref={view => { this.feedPost = view; }}
-        {...this.panResponder.panHandlers} style={{ transform: [{ rotate: `${this.state.rotate}deg` }], height: this.state.height, width: this.state.width, ...styles.knob }} />
+        {...this.panResponder.panHandlers} style={{
+          transform: [{ rotate: `${this.state.rotate}deg` }],
+          height: this.state.height,
+          width: this.state.width,
+          ...styles.knob
+        }}>
+        <View style={styles.dot} />
+      </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
   knob: {
-    backgroundColor: "blue",
-    borderRadius: 5
+    backgroundColor: '#0A100D',
+    borderRadius: 50,
+    position: 'relative'
+  },
+  dot: {
+    position: 'absolute',
+    width: 20,
+    height: 20,
+    borderRadius: 10,
+    top: 12,
+    backgroundColor: '#A22C29',
+    left: 40
   }
 });
 
