@@ -36,7 +36,7 @@ class AddTodoItem extends Component {
             value={this.state.inputValue}
           />
         </View>
-        <Button onPress={() => this.handleSubmit()}>Add todo</Button>
+        <Button onPress={this.handleSubmit}>Add todo</Button>
       </View>
     )
   }
