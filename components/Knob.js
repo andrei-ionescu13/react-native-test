@@ -12,15 +12,15 @@ class Knob extends Component {
   panResponder = PanResponder.create({
     onMoveShouldSetPanResponder: () => true,
     onPanResponderMove: (evt) => {
-      var center_x = this.state.offSetX + (this.state.width / 2);
-      var center_y = this.state.offSetY + (this.state.height / 2);
+      const center_x = this.state.offSetX + (this.state.width / 2);
+      const center_y = this.state.offSetY + (this.state.height / 2);
 
-      var mouse_x = evt.nativeEvent.pageX;
-      var mouse_y = evt.nativeEvent.pageY;
+      const mouse_x = evt.nativeEvent.pageX;
+      const mouse_y = evt.nativeEvent.pageY;
 
-      var radians = Math.atan2(mouse_x - center_x, mouse_y - center_y);
+      const radians = Math.atan2(mouse_x - center_x, mouse_y - center_y);
 
-      var degree = (radians * (180 / Math.PI) * -1) + 90;
+      const degree = (radians * (180 / Math.PI) * -1) + 90;
 
       if (degree > this.state.rotate) {
         console.log('right')
